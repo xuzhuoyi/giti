@@ -133,8 +133,14 @@ def subcommand(name, *args, **kwargs):
                     "\"giti down\" is equal to \"git clone\" in function, with many new feature.\n"
                     "When using down, the auto proxy is default open.\n"
                     "Supported source control management: git"))
-def down(url, scm='git', depth=None, protocol=None):
+def down(url, proxy=False, scm='git', depth=None, protocol=None):
+    if proxy:
+        action("Proxy option is enable.Using default proxy setting.")
+        os.system("git config --global http.proxy http://127.0.0.1:8087")
+        os.system("git config --global https.proxy http://127.0.0.1:8087")
     os.system("git clone " + url)
+    os.system("git config --global --unset http.proxy")
+    os.system("git config --global --unset https.proxy")
 
 
 def help_():
