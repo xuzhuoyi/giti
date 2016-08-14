@@ -7,7 +7,7 @@ import sys
 import traceback
 
 # Application version
-ver = '0.9.1'
+ver = '0.0.2'
 
 # Default paths to Mercurial and Git
 hg_cmd = 'hg'
@@ -135,12 +135,14 @@ def subcommand(name, *args, **kwargs):
                     "Supported source control management: git"))
 def down(url, proxy=False, scm='git', depth=None, protocol=None):
     if proxy:
-        action("Proxy option is enable.Using default proxy setting.")
+        action("Proxy option is enable. Using default proxy setting.")
         os.system("git config --global http.proxy http://127.0.0.1:8087")
         os.system("git config --global https.proxy http://127.0.0.1:8087")
+        os.system("git config --global http.sslverify false")
     os.system("git clone " + url)
     os.system("git config --global --unset http.proxy")
     os.system("git config --global --unset https.proxy")
+    os.system("git config --global http.sslverify true")
 
 
 def help_():
