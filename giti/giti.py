@@ -118,6 +118,7 @@ def subcommand(name, *args, **kwargs):
 # New command
 @subcommand('down',
             dict(name='url', help='Git repo url'),
+            dict(name=['-p', '--proxy'], action='store_true', help='Use proxy to clone the repository.'),
             dict(name='--scm', nargs='?',
                  help='Source control management. Currently supported: %s. Default: git' % ', '.join(
                      [s.name for s in scms.values()])),
