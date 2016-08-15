@@ -137,14 +137,15 @@ def subcommand(name, *args, **kwargs):
                     "Supported source control management: git"))
 def down(url, proxy=False, scm='git', depth=None, protocol=None):
     if proxy:
-        action("Proxy option is enable.")
+        info("Proxy option is enable.", 0)
         addr = conf.get_proxy()
+        info("Proxy address setting is " + addr)
         if not addr:
             warning("Proxy settings are not found. Using default proxy setting.")
             addr = '127.0.0.1:8087'
 
-        os.system("git config --global http.proxy http://127.0.0.1:8087")
-        os.system("git config --global https.proxy http://127.0.0.1:8087")
+        os.system("git config --global http.proxy http://" + addr)
+        os.system("git config --global https.proxy http://" + addr)
         os.system("git config --global http.sslverify false")
     os.system("git clone " + url)
     os.system("git config --global --unset http.proxy")
