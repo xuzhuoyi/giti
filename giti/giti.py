@@ -147,7 +147,9 @@ def down(url, proxy=False, scm='git', depth=None, protocol=None):
         os.system("git config --global http.proxy http://" + addr)
         os.system("git config --global https.proxy http://" + addr)
         os.system("git config --global http.sslverify false")
+
     os.system("git clone " + url)
+
     os.system("git config --global --unset http.proxy")
     os.system("git config --global --unset https.proxy")
     os.system("git config --global http.sslverify true")
