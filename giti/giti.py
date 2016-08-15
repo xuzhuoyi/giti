@@ -6,6 +6,8 @@ import os
 import sys
 import traceback
 
+import config
+
 # Application version
 ver = '0.0.3'
 
@@ -135,7 +137,12 @@ def subcommand(name, *args, **kwargs):
                     "Supported source control management: git"))
 def down(url, proxy=False, scm='git', depth=None, protocol=None):
     if proxy:
-        action("Proxy option is enable. Using default proxy setting.")
+        action("Proxy option is enable.")
+        addr = conf.get_proxy()
+        if not addr:
+            warning("Proxy settings are not found. Using default proxy setting.")
+            addr = '127.0.0.1:8087'
+
         os.system("git config --global http.proxy http://127.0.0.1:8087")
         os.system("git config --global https.proxy http://127.0.0.1:8087")
         os.system("git config --global http.sslverify false")
@@ -150,7 +157,7 @@ def help_():
 
 
 def main():
-    global verbose, very_verbose, remainder, cwd_root
+    global verbose, very_verbose, remainder, cwd_root, conf
 
     # Help messages adapt based on current dir
     cwd_root = os.getcwd()
@@ -164,6 +171,7 @@ def main():
         log(ver + "\n")
         sys.exit(0)
 
+    conf = config.Config()
     pargs, remainder = parser.parse_known_args()
     status = 1
 
