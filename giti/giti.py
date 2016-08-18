@@ -166,6 +166,8 @@ def down(url, proxy=False, scm='git', depth=None, protocol=None):
 def set_(name, value):
     if name == 'proxy.address':
         conf.set_proxy(value)
+        info("Proxy address setting is set to " + value)
+
 
 def help_():
     return parser.print_help()

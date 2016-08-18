@@ -7,7 +7,7 @@ class Config:
     __conf_dir = os.path.expanduser("~/.giticonf")
 
     def __init__(self):
-        self.__config.read()
+        self.__config.read(self.__conf_dir)
 
     def get_proxy(self):
         if 'proxy' in self.__config:
