@@ -4,9 +4,10 @@ import os
 
 class Config:
     __config = configparser.ConfigParser()
+    __conf_dir = os.path.expanduser("~/.giticonf")
 
     def __init__(self):
-        self.__config.read(os.path.expanduser("~/.giticonf"))
+        self.__config.read()
 
     def get_proxy(self):
         if 'proxy' in self.__config:
@@ -15,3 +16,8 @@ class Config:
 
     def set_proxy(self, url):
         self.__config['proxy']['address'] = url
+        self.__save()
+
+    def __save(self):
+        with open(self.__conf_dir, 'w') as configfile:
+            self.__config.write(configfile)
