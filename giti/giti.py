@@ -9,7 +9,7 @@ import traceback
 import config
 
 # Application version
-ver = '0.0.3'
+ver = '0.0.4'
 
 # Default paths to Mercurial and Git
 hg_cmd = 'hg'
@@ -154,6 +154,18 @@ def down(url, proxy=False, scm='git', depth=None, protocol=None):
     os.system("git config --global --unset https.proxy")
     os.system("git config --global http.sslverify true")
 
+
+@subcommand('set',
+            dict(name='name', help='giti option name'),
+            dict(name='value', help='giti option value'),
+            help='Setup giti',
+            description=(
+                    "Set or modify parameters of giti.\n"
+                    '"giti set" will change the profile in ~/.giticonf\n'
+                    "You can change the profile manually as well."))
+def set_(name, value):
+    if name == 'proxy.address':
+        conf.set_proxy(value)
 
 def help_():
     return parser.print_help()
