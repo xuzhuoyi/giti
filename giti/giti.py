@@ -9,7 +9,7 @@ import traceback
 import config
 
 # Application version
-ver = '0.0.5'
+ver = '0.0.6'
 
 # Default paths to Mercurial and Git
 hg_cmd = 'hg'

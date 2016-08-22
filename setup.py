@@ -5,10 +5,8 @@ LICENSE = open('LICENSE').read()
 
 setup(
     name="giti",
-    version="0.0.5",
-    description="Command line tool for git, " +
-                "clone and download repository from remotely hosted repositories (GitHub, GitLab, ..., etc.), " +
-                "with proxy/resume broken transfer and other new feature.",
+    version="0.0.6",
+    description="Command line tool for improve git",
     long_description=LONG_DESC,
     url='http://github.com/xuzhuoyi/giti',
     author='Zhuoyi Xu',
