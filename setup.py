@@ -5,7 +5,7 @@ LICENSE = open('LICENSE').read()
 
 setup(
     name="giti",
-    version="0.0.6",
+    version="0.0.7",
     description="Command line tool for improve git",
     long_description=LONG_DESC,
     url='http://github.com/xuzhuoyi/giti',
